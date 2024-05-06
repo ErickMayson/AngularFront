@@ -24,10 +24,11 @@ export class HomeComponent {
     // }
 
      ngOnInit() {
-      this.clientesService.getClientes('http://localhost:8090/clientes', {})
+      this.clientesService.getClientes('http://localhost:8090/clientes', {page: 0, perPage: 5})
       .subscribe((clientes: Cliente) => {
         console.log(clientes)
       });
     }
+
 
 }

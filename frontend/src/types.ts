@@ -55,6 +55,8 @@ export interface Options {
 
     }
 
-    export interface Params {
-
+    export interface PaginationParams {
+      [key: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+      page: number;
+      perPage: number;
     }
