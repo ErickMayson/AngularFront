@@ -42,8 +42,13 @@ export interface Options {
     }
 
     export interface Clientes {
-      clientes: Clientes[];
+    clientes: Cliente[];
+    total: number;
+    page: number;
+    perPage: number;
+    totalPages: number;
     }
+
 
     export interface Cliente {
 
