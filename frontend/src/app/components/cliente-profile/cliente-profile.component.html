@@ -1,1 +1,10 @@
-<p>cliente-profile works!</p>
+<div class="column gap-1 wrapper">
+  <a [href]="'/clientes/' + cliente.id">
+    <img src="../../../assets/images/genericAvatarIcon.jpg" alt="Cliente Pic">
+  </a>
+  <h2 class="title">{{ cliente.nome }}</h2>
+  <h3 class="telefone">{{cliente.telefone}}</h3>
+  <h3 class="email">{{cliente.email}}</h3>
+
+
+</div>
