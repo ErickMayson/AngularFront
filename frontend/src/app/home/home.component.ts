@@ -16,12 +16,8 @@ export class HomeComponent {
       private clientesService: ClientesService
     ) { }
 
-    // ngOnInit() {
-    //   this.clientesService.getClientes('http://localhost:8090/clientes', {})
-    //   .subscribe((clientes : Clientes) => {
-    //     console.log(clientes.clientes);
-    //   });
-    // }
+    listClients: Cliente[] = [];
+
 
      ngOnInit() {
       this.clientesService.getClientes('http://localhost:8090/clientes', {page: 0, perPage: 5})
