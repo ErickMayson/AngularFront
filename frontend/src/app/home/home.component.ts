@@ -20,13 +20,33 @@ export class HomeComponent {
 
     clientes: Cliente[] = [];
 
-     ngOnInit() {
-      this.clientesService.getClientes('http://localhost:8090/clientes', {page: 0, perPage: 5})
-      .subscribe((clientes: Clientes) => {
-        console.log(clientes.clientes)
-        this.clientes = clientes.clientes;
+    totalRecords: number = 0;
+    rows: number = 12;
 
-      });
+
+    fetchClientes(page: number, perPage: number) {
+      this.clientesService
+        .getClientes('http://localhost:8090/clientes', { page, perPage })
+        .subscribe({
+          next: (data: Clientes) => {
+            this.clientes = data.clientes;
+            this.totalRecords = data.total;
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+    }
+
+
+    addCliente(cliente: Cliente) {
+      console.log(cliente, 'Add');
+    }
+
+
+
+    ngOnInit() {
+    this.fetchClientes(0, this.rows);
     }
 
 
