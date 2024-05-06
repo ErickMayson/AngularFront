@@ -27,12 +27,12 @@ export class ClientesService {
   }
 
   // Adding a product via the API
-  addCliente = (url: string, body: any): Observable<any> => {
+  addCliente = (url: string, body: Cliente): Observable<any> => {
     return this.apiService.post(url, body, {});
   };
 
   // Se der tempo, eu implemento
-  editCliente = (url: string, body: any): Observable<any> => {
+  editCliente = (url: string, body: Cliente): Observable<any> => {
     return this.apiService.put(url, body, {});
   };
 
