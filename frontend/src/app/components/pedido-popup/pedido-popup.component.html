@@ -20,13 +20,20 @@
     <!-- Valor -->
     <div class="row gap-05">
       <span class="price-label">valor:</span>
-      <input type="text" formControlName="valor" placeholder="00,00" mask="separator.2"/>
+      <input type="text" formControlName="valor" placeholder="00.00" mask="separator.2"/>
     </div>
 
     <!-- Status -->
     <div class="row gap-05">
-      <span class="price-label">status:</span>
-      <input type="text" formControlName="status" />
+      <span class="price-label">Status:</span>
+      <div>
+        <label>
+          <input type="radio" formControlName="status" value="ACEITO"> ACEITO
+        </label>
+        <label>
+          <input type="radio" formControlName="status" value="RECUSADO"> RECUSADO
+        </label>
+      </div>
     </div>
   </div>
 

@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { dateValidator } from '../../helpers/datevalidator';
 import { acceptanceValidator } from '../../helpers/acceptancevalidator';
 import { NgxMaskDirective } from 'ngx-mask';
+import { commaToPeriodValidator } from '../../helpers/commaToDotvalidator';
 
 @Component({
   selector: 'app-pedido-popup',
@@ -65,7 +66,7 @@ export class PedidoPopupComponent {
     cliente: [this.clienteId],
     dataPedido: ['', [Validators.required, dateValidator()]],
     descricao: [''],
-    valor: [0],
+    valor: [0, [Validators.required, commaToPeriodValidator()]],
     status: ['', [Validators.required, acceptanceValidator()]]
   });
 
