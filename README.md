@@ -15,7 +15,7 @@ Para executar este projeto localmente, siga estas etapas:
 2. Clone este repositório para o seu ambiente de desenvolvimento:
 
 
-git clone https://github.com/seu-usuario/AngularFront.git
+git clone https://github.com/ErickMayson/AngularFront.git
 
 
 3. Navegue até o diretório do projeto:
