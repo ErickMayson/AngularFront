@@ -19,11 +19,14 @@ git clone https://github.com/seu-usuario/AngularFront.git
 
 
 3. Navegue até o diretório do projeto:
-   
+   ```
    cd AngularFront
-
+   ```
 4. Instale as dependências do projeto:
+   ```
    npm install
-
+   ```
 5. Inicie o servidor de desenvolvimento:
+```
   ng serve
+```
