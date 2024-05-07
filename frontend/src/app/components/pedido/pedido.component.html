@@ -1,5 +1,18 @@
 <div class="row gap-1 wrapper">
   <h2 class="data">{{ pedido.dataPedido }}</h2>
-  <h3 class="status">{{pedido.status}}</h3>
-  <h3 class="valor">R${{pedido.valor}}</h3>
+  <h3 class="status">{{ pedido.status }}</h3>
+  <h3 class="valor">R${{ pedido.valor }}</h3>
+
+  <!-- Action buttons -->
+  <div class="row gap-05">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-pencil"
+      (click)="editPedido()"
+      label="Edit"
+    ></button>
+  </div>
 </div>
+
+<p-confirmPopup></p-confirmPopup>

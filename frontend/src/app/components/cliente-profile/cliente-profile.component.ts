@@ -63,7 +63,7 @@ export class ClienteProfileComponent {
       return;
     }
 
-    this.editPedido(pedido, this.selectedPedido.id);
+    this.editPedido(this.clienteId, pedido, this.selectedPedido.id);
     this.displayEditPopup = false;
   }
 
@@ -91,20 +91,9 @@ export class ClienteProfileComponent {
       });
     }
 
-
-    ngOnInit(): void {
-      this.route.params.subscribe(params => {
-        this.clienteId = params['id']; // Retrieve the ID from the URL and convert it to a number
-        // console.log(this.clienteId)
-        this.fetchCliente(this.clienteId);
-        this.fetchPedidos(this.clienteId, 0, this.rows);
-
-      });
-    }
-
     editPedido(clienteId: number, pedido: Pedido, id: number) {
     this.pedidosService
-      .editPedido(`http://localhost:8090/pedidos/${id}`, pedido)
+      .editPedido(`http://localhost:8090/pedidos/editPedido/${id}`, pedido)
       .subscribe({
         next: (data) => {
           console.log(data);
@@ -142,5 +131,16 @@ export class ClienteProfileComponent {
         },
       });
   }
+
+      ngOnInit(): void {
+      this.route.params.subscribe(params => {
+        this.clienteId = params['id']; // Retrieve the ID from the URL and convert it to a number
+        // console.log(this.clienteId)
+        this.fetchCliente(this.clienteId);
+        this.fetchPedidos(this.clienteId, 0, this.rows);
+
+      });
+    }
+
 
 }

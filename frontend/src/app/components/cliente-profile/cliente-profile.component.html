@@ -29,7 +29,10 @@
 
   <!-- Pedidos Section -->
   <div class="row wrap gap-1 space-between" *ngFor="let pedido of pedidos">
-    <app-pedido [pedido]="pedido"></app-pedido>
+    <app-pedido
+    [pedido]="pedido"
+    (edit)="toggleEditPopup($event)"
+    ></app-pedido>
   </div>
 
 </div>

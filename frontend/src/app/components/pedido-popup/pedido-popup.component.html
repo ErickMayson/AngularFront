@@ -5,25 +5,25 @@
   [closable]="false"
 >
   <div class="column gap-1 form-wrapper" [formGroup]="pedidoForm">
-    <!-- Name -->
+    <!-- Data -->
     <div class="row gap-05">
       <span class="price-label">Data</span>
       <input type="text" formControlName="dataPedido" placeholder="ANO-MES-DIA" mask="0000-00-00"/>
     </div>
 
-    <!-- Email -->
+    <!-- Descricao -->
     <div class="row gap-05">
       <span class="price-label">descricao:</span>
       <input type="text" formControlName="descricao" />
     </div>
 
-    <!-- Telefone -->
+    <!-- Valor -->
     <div class="row gap-05">
       <span class="price-label">valor:</span>
       <input type="text" formControlName="valor" placeholder="00,00" mask="separator.2"/>
     </div>
 
-    <!-- Endereco -->
+    <!-- Status -->
     <div class="row gap-05">
       <span class="price-label">status:</span>
       <input type="text" formControlName="status" />
