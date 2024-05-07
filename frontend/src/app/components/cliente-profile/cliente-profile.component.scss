@@ -38,4 +38,29 @@
   &:hover {
     border: 2px solid var(--border-color);
   }
+
+}
+
+.add-pedido-btn {
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+
+  background-color: #0c3346;
+
+
+
+  box-shadow: 0 0 10px 2.5px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background-color: #030C11;
+    transition: 0.4;
+  }
+
+  &:hover {
+    background-color: #A5CCDF;
+    transition: 0.2;
+  }
 }

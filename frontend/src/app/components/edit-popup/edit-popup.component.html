@@ -1,0 +1,51 @@
+<p-dialog
+  [header]="header"
+  [(visible)]="display"
+  [modal]="true"
+  [closable]="false"
+>
+  <div class="column gap-1 form-wrapper" [formGroup]="clienteForm">
+    <!-- Name -->
+    <div class="row gap-05">
+      <span class="price-label">Nome:</span>
+      <input type="text" formControlName="nome" />
+    </div>
+
+    <!-- Email -->
+    <div class="row gap-05">
+      <span class="price-label">Email:</span>
+      <input type="text" formControlName="email" />
+    </div>
+
+    <!-- Telefone -->
+    <div class="row gap-05">
+      <span class="price-label">Telefone:</span>
+      <input type="text" formControlName="telefone" />
+    </div>
+
+    <!-- Endereco -->
+    <div class="row gap-05">
+      <span class="price-label">Endereco:</span>
+      <input type="text" formControlName="endereco" />
+    </div>
+  </div>
+
+  <!-- Footer with action buttons -->
+  <p-footer>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="onConfirm()"
+      label="Confirm"
+      [class.disabled]="!clienteForm.valid"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      (click)="onCancel()"
+      label="Cancel"
+    ></button>
+  </p-footer>
+</p-dialog>

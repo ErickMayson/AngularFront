@@ -12,4 +12,6 @@ import { CommonModule } from '@angular/common';
 export class ClienteComponent {
   @Input() cliente!: Cliente; // ! assume que esse cliente será providenciado.
 
+
+
 }

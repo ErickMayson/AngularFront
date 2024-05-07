@@ -4,11 +4,13 @@ import { Cliente, Clientes } from '../../types';
 import { response } from 'express';
 import { ClienteComponent } from '../components/cliente/cliente.component';
 import { CommonModule } from '@angular/common';
+import { EditPopupComponent } from '../components/edit-popup/edit-popup.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ClienteComponent, CommonModule],
+  imports: [ClienteComponent, CommonModule, EditPopupComponent, ButtonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -23,12 +25,43 @@ export class HomeComponent {
     totalRecords: number = 0;
     rows: number = 12;
 
+    displayEditPopup: boolean = false;
+    displayAddPopup: boolean = false;
+
+  toggleEditPopup(cliente: Cliente) {
+    this.selectedCliente = cliente;
+    this.displayEditPopup = true;
+  }
+
+  toggleAddPopup() {
+    this.displayAddPopup = true;
+  }
+
+  selectedCliente: Cliente = {
+    id: 0,
+    nome: '',
+    email: '',
+    telefone: '',
+    endereco: '',
+  };
+
+
+  onConfirmAdd(cliente: Cliente) {
+    this.addCliente(cliente);
+    this.displayAddPopup = false;
+  }
+
+  onClienteOutput(cliente: Cliente) {
+    console.log(cliente, 'Output');
+  }
+
 
     fetchClientes(page: number, perPage: number) {
       this.clientesService
         .getClientes('http://localhost:8090/clientes', { page, perPage })
         .subscribe({
           next: (data: Clientes) => {
+            console.log(data)
             this.clientes = data.clientes;
             this.totalRecords = data.total;
           },
@@ -40,7 +73,17 @@ export class HomeComponent {
 
 
     addCliente(cliente: Cliente) {
-      console.log(cliente, 'Add');
+    this.clientesService
+      .addCliente(`http://localhost:8090/clientes`, cliente)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.fetchClientes(0, this.rows);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     }
 
 

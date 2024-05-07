@@ -28,12 +28,15 @@ export interface Options {
     }
 
     export interface Pedidos {
-      pedidos: Pedidos[];
-
+      pedidos: Pedido[];
+      total: number;
+      page: number;
+      perPage: number;
+      totalPages: number;
     }
 
     export interface Pedido {
-      id: number;
+      id?: number;
       dataPedido: Date;
       descricao: string;
       valor: number;
@@ -52,7 +55,7 @@ export interface Options {
 
     export interface Cliente {
 
-      id: number;
+      id?: number;
       nome: string;
       email: string;
       telefone: string;
