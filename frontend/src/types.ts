@@ -41,7 +41,7 @@ export interface Options {
       descricao?: string;
       valor: number;
       status: string;
-      cliente?: number;
+      cliente_id?: number;
     }
 
     export interface Clientes {

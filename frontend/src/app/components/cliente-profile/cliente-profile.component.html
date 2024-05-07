@@ -1,39 +1,38 @@
-<div class="column gap-1" style="overflow: auto;">
-  <!-- Add Product Button -->
-  <button
-    type="button"
-    pButton
-    icon="pi pi-plus"
-    (click)="toggleAddPopup()"
-    label="Add Pedido"
-    class="add-pedido-btn"
-  ></button>
-@if (cliente) {
-  <div class="column gap-1 wrapper">
-    <a [routerLink]="['/clientes',cliente.id]">
-      <img
-        src="../../../assets/images/genericAvatarIcon.jpg"
-      alt="Cliente Pic"
-      />
-    </a>
+<div class="cliente-profile">
+  <div class="column gap-1" style="overflow: auto;">
+    <!-- Add Product Button -->
+    <button
+      type="button"
+      pButton
+      icon="pi pi-plus"
+      (click)="toggleAddPopup()"
+      label="Add Pedido"
+      class="add-pedido-btn"
+    ></button>
+  @if (cliente) {
+    <div class="column gap-1 wrapper">
+      <a [routerLink]="['/clientes',cliente.id]">
+        <img
+          src="../../../assets/images/genericAvatarIcon.jpg"
+        alt="Cliente Pic"
+        />
+      </a>
 
-      <h2 class="title">{{ cliente.nome }}</h2>
-      <h3 class="telefone">{{ cliente.telefone }}</h3>
-      <h3 class="email">{{ cliente.email }}</h3>
-
-
-  </div>}
-
-  <!-- Pedidos Section -->
-   <div class="row wrap gap-2 space-between"  *ngFor="let pedido of pedidos">
-    <app-pedido [pedido]="pedido"></app-pedido>
-  </div>
+        <h2 class="title">{{ cliente.nome }}</h2>
+        <h3 class="telefone">{{ cliente.telefone }}</h3>
+        <h3 class="email">{{ cliente.email }}</h3>
 
 
-
+    </div>}
 
 </div>
 
+  <!-- Pedidos Section -->
+  <div class="row wrap gap-1 space-between" *ngFor="let pedido of pedidos">
+    <app-pedido [pedido]="pedido"></app-pedido>
+  </div>
+
+</div>
 <!-- Add Product -->
 
 <app-pedido-popup

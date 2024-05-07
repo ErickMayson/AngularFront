@@ -46,7 +46,7 @@ export class PedidoPopupComponent {
     descricao: '',
     valor: 0,
     status: 'ACEITO' || 'RECUSADO',
-    cliente: 0,
+    cliente_id: 0,
   };
 
   @Output() confirm = new EventEmitter<Pedido>();
@@ -76,15 +76,29 @@ export class PedidoPopupComponent {
   }
 
   onConfirm() {
-    const { dataPedido, descricao, valor, status, cliente } = this.pedidoForm.value;
+    const { dataPedido, cliente, descricao, valor, status } = this.pedidoForm.value;
 
-    this.confirm.emit({
-      dataPedido: dataPedido || '',
-      descricao: descricao || '',
-      valor: valor || 0,
-      status: 'ACEITO' || 'RECUSADO',
-      cliente: cliente || 0
-    });
+    const pedido: Pedido = {
+    dataPedido: dataPedido || '',
+    descricao: descricao || '',
+    valor: valor || 0,
+    status: 'ACEITO' || 'RECUSADO', // Assuming status can't be empty
+    cliente_id: this.clienteId  // Include clienteId from component property
+    };
+
+    console.log(pedido)
+
+
+   // this.confirm.emit({
+   //   dataPedido: dataPedido || '',
+   //   cliente: this.clienteId || 0,
+   //   descricao: descricao || '',
+   //   valor: valor || 0,
+   //   status: 'ACEITO' || 'RECUSADO',
+   // });
+
+
+    this.confirm.emit(pedido);
 
 
     this.display = false;

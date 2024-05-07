@@ -8,11 +8,13 @@ import { PedidosService } from '../../services/pedidos.service';
 import { PedidoComponent } from '../pedido/pedido.component';
 import { ButtonModule } from 'primeng/button';
 import { PedidoPopupComponent } from '../pedido-popup/pedido-popup.component';
+import { DateUtils } from '../../helpers/dateUtils';
 
 @Component({
   selector: 'app-cliente-profile',
   standalone: true,
   imports: [ClienteComponent, CommonModule, PedidoComponent, PedidoPopupComponent, ButtonModule, RouterLink],
+  providers: [DateUtils],
   templateUrl: './cliente-profile.component.html',
   styleUrl: './cliente-profile.component.scss'
 })
@@ -25,8 +27,8 @@ export class ClienteProfileComponent {
   constructor(
       private clientesService: ClientesService,
       private pedidosService: PedidosService,
-      private route: ActivatedRoute
-
+      private route: ActivatedRoute,
+      private dateUtils: DateUtils
     ) { }
 
     pedidos: Pedido[] = [];
@@ -53,7 +55,7 @@ export class ClienteProfileComponent {
       descricao: '',
       valor: 0,
       status: 'ACEITO' || 'RECUSADO',
-      cliente: 0,
+      cliente_id: 0,
     };
 
 
@@ -71,7 +73,7 @@ export class ClienteProfileComponent {
       .addPedido(`http://localhost:8090/pedidos/addPedido`, pedido)
       .subscribe({
         next: (data) => {
-         // console.log(data);
+          console.log(data);
           this.fetchPedidos(this.clienteId, 0, this.rows);
         },
         error: (error) => {
@@ -101,25 +103,21 @@ export class ClienteProfileComponent {
     }
 
     fetchPedidos(clienteId: number, page: number, perPage: number) {
-        this.pedidosService
-          .getPedidos(`http://localhost:8090/pedidos/cliente/id?id=${clienteId}`, {page, perPage})
-          .subscribe({
-            next: (data: Pedidos) => {
-           // console.log(data.pedidos)
-              this.pedidos = data.pedidos;
-              this.totalRecords = data.total;
-
-
-            },
-            error: (error) => {
-              console.log(error);
-            },
-          });
-    }
-
-
-
-
-
+    this.pedidosService
+      .getPedidos(`http://localhost:8090/pedidos/cliente/id?id=${clienteId}`, { page, perPage })
+      .subscribe({
+        next: (data: Pedidos) => {
+          // Format the dataPedido property for each Pedido object
+          this.pedidos = data.pedidos.map(pedido => ({
+            ...pedido,
+            dataPedido: this.dateUtils.formatDate(pedido.dataPedido) // Format the date
+          }));
+          this.totalRecords = data.total;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+  }
 
 }
