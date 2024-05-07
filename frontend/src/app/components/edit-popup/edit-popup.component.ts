@@ -9,7 +9,6 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -20,7 +19,6 @@ import { ButtonModule } from 'primeng/button';
     DialogModule,
     CommonModule,
     FormsModule,
-    RatingModule,
     ButtonModule,
     ReactiveFormsModule,
 

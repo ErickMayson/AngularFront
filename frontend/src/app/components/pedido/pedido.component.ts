@@ -14,7 +14,7 @@ export class PedidoComponent {
  // @Input() cliente!: Cliente;
 
   ngOnInit(): void {
-    console.log("Pedido item",this.pedido);
+    //console.log("Pedido item",this.pedido);
     //console.log("Pedido item",this.cliente);
   }
 }
