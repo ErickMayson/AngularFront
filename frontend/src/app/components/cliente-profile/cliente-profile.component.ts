@@ -58,6 +58,15 @@ export class ClienteProfileComponent {
       cliente_id: 0,
     };
 
+    onConfirmEdit(pedido: Pedido) {
+    if (!this.selectedPedido.id) {
+      return;
+    }
+
+    this.editPedido(pedido, this.selectedPedido.id);
+    this.displayEditPopup = false;
+  }
+
 
     onConfirmAdd(pedido: Pedido) {
       this.addPedido(pedido);
@@ -92,6 +101,20 @@ export class ClienteProfileComponent {
 
       });
     }
+
+    editPedido(clienteId: number, pedido: Pedido, id: number) {
+    this.pedidosService
+      .editPedido(`http://localhost:8090/pedidos/${id}`, pedido)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.fetchPedidos(this.clienteId, 0, this.rows);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+  }
 
 
     fetchCliente(clienteId: number) {

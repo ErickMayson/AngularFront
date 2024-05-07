@@ -35,6 +35,14 @@
 </div>
 <!-- Add Product -->
 
+<!-- Edit Product -->
+<app-pedido-popup
+  [pedido]="selectedPedido"
+  [(display)]="displayEditPopup"
+  (confirm)="onConfirmEdit($event)"
+  header="Edit Product"
+></app-pedido-popup>
+
 <app-pedido-popup
   [(display)]="displayAddPopup"
   [clienteId]="clienteId"
