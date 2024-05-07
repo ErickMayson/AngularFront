@@ -37,11 +37,12 @@ export interface Options {
 
     export interface Pedido {
       id?: number;
+      cliente?: number;
       dataPedido: string;
       descricao?: string;
       valor: number;
       status: string;
-      cliente_id?: number;
+
     }
 
     export interface Clientes {

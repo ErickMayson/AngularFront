@@ -42,11 +42,11 @@ export class PedidoPopupComponent {
   @Input() header!: string;
 
   @Input() pedido: Pedido = {
+    cliente: 0,
     dataPedido: '',
     descricao: '',
     valor: 0,
-    status: 'ACEITO' || 'RECUSADO',
-    cliente_id: 0,
+    status: '',
   };
 
   @Output() confirm = new EventEmitter<Pedido>();
@@ -62,11 +62,11 @@ export class PedidoPopupComponent {
   }
 
   pedidoForm = this.formBuilder.group({
+    cliente: [this.clienteId],
     dataPedido: ['', [Validators.required, dateValidator()]],
     descricao: [''],
     valor: [0],
-    status: ['', [Validators.required, acceptanceValidator()]],
-    cliente: [this.clienteId]
+    status: ['', [Validators.required, acceptanceValidator()]]
   });
 
   ngOnChanges() {
@@ -79,11 +79,12 @@ export class PedidoPopupComponent {
     const { dataPedido, cliente, descricao, valor, status } = this.pedidoForm.value;
 
     const pedido: Pedido = {
+
+    cliente: this.clienteId,  // Include clienteId from component property
     dataPedido: dataPedido || '',
     descricao: descricao || '',
     valor: valor || 0,
-    status: 'ACEITO' || 'RECUSADO', // Assuming status can't be empty
-    cliente_id: this.clienteId  // Include clienteId from component property
+    status: status || 'RECUSADO', // Assuming status can't be empty // This should be a Checkbox.
     };
 
     console.log(pedido)

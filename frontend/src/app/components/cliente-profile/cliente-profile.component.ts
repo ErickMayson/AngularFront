@@ -55,7 +55,7 @@ export class ClienteProfileComponent {
       descricao: '',
       valor: 0,
       status: 'ACEITO' || 'RECUSADO',
-      cliente_id: 0,
+      cliente: 0,
     };
 
     onConfirmEdit(pedido: Pedido) {
@@ -76,6 +76,17 @@ export class ClienteProfileComponent {
     onPedidoOutput(pedido: Pedido) {
       console.log(pedido, 'Output');
     }
+
+    ngOnInit(): void {
+      this.route.params.subscribe(params => {
+        this.clienteId = params['id']; // Retrieve the ID from the URL and convert it to a number
+        console.log(this.clienteId)
+        this.fetchCliente(this.clienteId);
+        this.fetchPedidos(this.clienteId, 0, this.rows);
+
+      });
+    }
+
 
     addPedido(pedido: Pedido) {
     this.pedidosService
@@ -119,11 +130,13 @@ export class ClienteProfileComponent {
       .getPedidos(`http://localhost:8090/pedidos/cliente/id?id=${clienteId}`, { page, perPage })
       .subscribe({
         next: (data: Pedidos) => {
+          console.log("Fetch using " + this.clienteId);
           // Format the dataPedido property for each Pedido object
           this.pedidos = data.pedidos.map(pedido => ({
             ...pedido,
             dataPedido: this.dateUtils.formatDate(pedido.dataPedido) // Format the date
           }));
+          console.log(this.pedidos);
           this.totalRecords = data.total;
         },
         error: (error) => {
@@ -131,16 +144,6 @@ export class ClienteProfileComponent {
         },
       });
   }
-
-      ngOnInit(): void {
-      this.route.params.subscribe(params => {
-        this.clienteId = params['id']; // Retrieve the ID from the URL and convert it to a number
-        // console.log(this.clienteId)
-        this.fetchCliente(this.clienteId);
-        this.fetchPedidos(this.clienteId, 0, this.rows);
-
-      });
-    }
 
 
 }
