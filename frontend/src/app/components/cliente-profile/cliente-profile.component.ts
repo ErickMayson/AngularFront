@@ -68,7 +68,7 @@ export class ClienteProfileComponent {
 
     addPedido(pedido: Pedido) {
     this.pedidosService
-      .addPedido(`http://localhost:8090/pedidos`, pedido)
+      .addPedido(`http://localhost:8090/pedidos/addPedido`, pedido)
       .subscribe({
         next: (data) => {
          // console.log(data);

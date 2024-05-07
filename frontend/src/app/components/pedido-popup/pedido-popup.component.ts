@@ -24,7 +24,6 @@ import { NgxMaskDirective } from 'ngx-mask';
     FormsModule,
     ButtonModule,
     ReactiveFormsModule,
-    NgxMaskDirective
 
 
   ],
@@ -37,6 +36,8 @@ export class PedidoPopupComponent {
 
   @Input() display: boolean = false;
   @Output() displayChange = new EventEmitter<boolean>();
+  @Input() clienteId: number = 0; // Input property to receive the client ID
+
 
   @Input() header!: string;
 
@@ -45,6 +46,7 @@ export class PedidoPopupComponent {
     descricao: '',
     valor: 0,
     status: 'ACEITO' || 'RECUSADO',
+    cliente: 0,
   };
 
   @Output() confirm = new EventEmitter<Pedido>();
@@ -64,20 +66,24 @@ export class PedidoPopupComponent {
     descricao: [''],
     valor: [0],
     status: ['', [Validators.required, acceptanceValidator()]],
+    cliente: [this.clienteId]
   });
 
   ngOnChanges() {
     this.pedidoForm.patchValue(this.pedido);
+    // Update the form control value when clientId changes
+    this.pedidoForm.get('cliente')?.setValue(this.clienteId);
   }
 
   onConfirm() {
-    const { dataPedido, descricao, valor, status } = this.pedidoForm.value;
+    const { dataPedido, descricao, valor, status, cliente } = this.pedidoForm.value;
 
     this.confirm.emit({
       dataPedido: dataPedido || '',
       descricao: descricao || '',
       valor: valor || 0,
       status: 'ACEITO' || 'RECUSADO',
+      cliente: cliente || 0
     });
 
 

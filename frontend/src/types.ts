@@ -38,7 +38,7 @@ export interface Options {
     export interface Pedido {
       id?: number;
       dataPedido: string;
-      descricao: string;
+      descricao?: string;
       valor: number;
       status: string;
       cliente?: number;

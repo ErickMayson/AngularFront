@@ -38,6 +38,7 @@
 
 <app-pedido-popup
   [(display)]="displayAddPopup"
+  [clienteId]="clienteId"
   (confirm)="onConfirmAdd($event)"
   header="Add Product"
 ></app-pedido-popup>

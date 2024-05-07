@@ -61,7 +61,7 @@ export class HomeComponent {
         .getClientes('http://localhost:8090/clientes', { page, perPage })
         .subscribe({
           next: (data: Clientes) => {
-            console.log(data)
+            // console.log(data)
             this.clientes = data.clientes;
             this.totalRecords = data.total;
           },
@@ -77,7 +77,7 @@ export class HomeComponent {
       .addCliente(`http://localhost:8090/clientes`, cliente)
       .subscribe({
         next: (data) => {
-          console.log(data);
+          //console.log(data);
           this.fetchClientes(0, this.rows);
         },
         error: (error) => {
