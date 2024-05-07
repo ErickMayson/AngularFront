@@ -10,6 +10,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { telefoneValidator } from '../../helpers/telefoneValidator';
+import { emailValidator } from '../../helpers/emailValidator';
 
 @Component({
   selector: 'app-edit-popup',
@@ -55,8 +57,8 @@ export class EditPopupComponent {
 
   clienteForm = this.formBuilder.group({
     nome: ['', [Validators.required, this.specialCharacterValidator()]],
-    email: [''],
-    telefone: [''],
+    email: ['', [Validators.required, emailValidator()]],
+    telefone: ['', telefoneValidator()],
     endereco: [''],
   });
 
